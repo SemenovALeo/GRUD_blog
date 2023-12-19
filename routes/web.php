@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\TestController;
@@ -17,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::view('/', 'welcome');
+Route::view('/', 'home.index')->name('home');
 Route::get('test', TestController::class);
 
 Route::middleware('guest')->group(function (){
@@ -28,5 +29,8 @@ Route::middleware('guest')->group(function (){
     Route::post('login',[LoginController::class,'store'])->name('login.store');
 });
 
+Route::get('blog',[BlogController::class,'index'])->name('blog');
+Route::get('blog/{post}',[BlogController::class,'show'])->name('blog.show');
+Route::get('blog/{post}/like',[BlogController::class,'like'])->name('blog.like');
 
 
