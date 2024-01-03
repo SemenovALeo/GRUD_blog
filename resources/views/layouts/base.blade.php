@@ -6,6 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.2/css/bootstrap.min.css">
+<<<<<<< HEAD
     @stack('css')
     <title>@yield('page.title', config('app.name'))</title>
     <style>
@@ -16,6 +17,13 @@
 <body>
 
 <div class="d-flex flex-column justify-content-between min-vh-100 ">
+=======
+    <title>@yield('page.title', config('app.name'))</title>
+</head>
+<body>
+
+<div class="d-flex flex-column justify-content-between min-vh-100 text-center">
+>>>>>>> origin/master
 
     @include('includes.header')
 
@@ -27,8 +35,13 @@
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.2/js/bootstrap.min.js">
+<<<<<<< HEAD
 </script>
 @stack('js')
+=======
+
+</script>
+>>>>>>> origin/master
 </body>
 </html>
 
