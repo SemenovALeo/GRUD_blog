@@ -6,5 +6,4 @@
             @yield('main.content')
         </x-container>
     </section>
-
 @endsection

@@ -14,3 +14,10 @@ if (! function_exists('active_link')){
         return Route::is($name) ? $active: '';
     }
 }
+
+if (! function_exists('alert')) {
+    function alertText(string $value)
+    {
+        session(['alert' => $value]);
+    }
+}

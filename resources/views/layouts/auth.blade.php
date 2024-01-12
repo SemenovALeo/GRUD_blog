@@ -8,7 +8,6 @@
                     @yield('auth.content')
                 </div>
             </div>
-            </div>
         </x-container>
     </section>
 @endsection

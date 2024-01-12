@@ -13,10 +13,13 @@ class RegisterController extends Controller
 
     public function store( Request $request)
     {
-        $data = $request->all();
+       $data = $request->all();
 
-        dd($data);
+       if(true)
+       {
+           return redirect()->back()->withInput();
+       }
 
-        return 'Запрос на регистрацию';
+       return to_route('user');
     }
 }

@@ -53,4 +53,12 @@ class PostController extends Controller
         ];
         return view('user.posts.edit', compact('post'));
     }
+
+    public function update(Request $request, $post)
+    {
+        $title =  $request->input('title');
+        $content = $request->input('content');
+
+        return redirect()->back();
+    }
 }
