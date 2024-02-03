@@ -3,18 +3,18 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Post\StorePostRequest;
+use App\Models\Post;
+use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use function Laravel\Prompts\alert;
 
 class PostController extends Controller
 {
     public function index()
     {
-        $post = (object)[
-            'id' => 123,
-            'title' => 'Lorem ipsum dolor sit amet.',
-            'content' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis, quidem.',
-        ];
-        $posts = array_fill(0,10,$post);
+       $posts = Post::query()->paginate(12);
 
         return view('user.posts.index', compact('posts'));
     }
@@ -30,6 +30,8 @@ class PostController extends Controller
         return view('user.posts.show', compact('post'));
     }
 
+
+
     public function create()
     {
         return view('user.posts.create');
@@ -37,10 +39,21 @@ class PostController extends Controller
 
     public function store(Request $request)
     {
-        $title =  $request->input('title');
-        $content = $request->input('content');
+        $validated = validate($request->all(),[
+            'title' => ['required', 'string', 'max:100'],
+            'content' => ['required', 'string'],
+            'published_at' => ['nullable', 'string', 'date'],
+            'published' => ['nullable', 'boolean'],
+        ]);
 
-        dd($title, $content);
+        $post = Post::query()->firstOrCreate([
+            'user_id' => User::query()->value('id'),
+            'title' => $validated['title'],],
+            ['content' => $validated['content'],
+            'published_at' => new Carbon($validated['published_at']) ?? null,
+            'published' => $validated['published'] ?? null,
+        ]);
+
         return 'Страница создания поста';
     }
 
@@ -56,8 +69,10 @@ class PostController extends Controller
 
     public function update(Request $request, $post)
     {
-        $title =  $request->input('title');
-        $content = $request->input('content');
+        $validated = validate($request->all(),[
+            'title' => ['required', 'string', 'max:100'],
+            'content' => ['required', 'string'],
+        ]);
 
         return redirect()->back();
     }

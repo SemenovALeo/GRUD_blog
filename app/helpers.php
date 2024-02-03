@@ -21,3 +21,10 @@ if (! function_exists('alert')) {
         session(['alert' => $value]);
     }
 }
+
+if (! function_exists('validate')) {
+    function validate(array $attributes, array $rules): array
+    {
+       return validator($attributes,$rules)->validate();
+    }
+}
