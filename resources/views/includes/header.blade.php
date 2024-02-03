@@ -24,6 +24,7 @@
                 </li>
             </ul>
             <ul class="navbar-nav ms-auto mb-2 mb-md-0">
+                @guest()
                 <li class="nav-item">
                     <a href="{{route('register')}}" class="nav-link {{active_link('register')}}"
                        aria-current="page">
@@ -35,6 +36,16 @@
                         {{__('Вход')}}
                     </a>
                 </li>
+                @endguest
+                @auth()
+                        <li class="nav-item">
+                            <a href="{{route('logout')}}" class="nav-link "
+                               aria-current="page">
+                                {{__('Выход')}}
+                            </a>
+                        </li>
+
+                @endauth
             </ul>
         </div>
 

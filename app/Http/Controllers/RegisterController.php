@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Post\StorePostRequest;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
 {
@@ -11,15 +14,19 @@ class RegisterController extends Controller
         return view('register.index');
     }
 
-    public function store( Request $request)
+    public function store( StorePostRequest $request)
     {
-       $data = $request->all();
 
-       if(true)
-       {
-           return redirect()->back()->withInput();
-       }
+        $data = $request->only([
+            'name',
+            'email',
+            'password'
+        ]);
+
+        User::query()->create($data);
 
        return to_route('user');
+
+
     }
 }

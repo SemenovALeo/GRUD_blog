@@ -14,6 +14,7 @@
     </x-card-header>
 
     <x-card-body>
+    <x-errors/>
         <x-form action="{{route('login.store')}}" method="POST">
             <x-form-item>
                 <x-label required>{{__('Email')}}</x-label>

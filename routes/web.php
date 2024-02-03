@@ -29,6 +29,8 @@ Route::middleware('guest')->group(function (){
     Route::post('login',[LoginController::class,'store'])->name('login.store');
 });
 
+Route::get('logout',[LoginController::class, 'logout'])->name('logout');
+
 Route::get('blog',[BlogController::class,'index'])->name('blog');
 Route::get('blog/{post}',[BlogController::class,'show'])->name('blog.show');
 Route::get('blog/{post}/like',[BlogController::class,'like'])->name('blog.like');
